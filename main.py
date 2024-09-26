@@ -1,26 +1,22 @@
-import sys  # Importa el módulo sys para acceder a sys.maxsize, que representa el valor máximo de un entero.
+import sys
 
 def dijkstra(graph, start, end):
-    n = len(graph)  # Obtiene el número de nodos en el grafo.
-    visited = [False] * n  # Crea una lista para marcar si un nodo ha sido visitado.
-    distance = [sys.maxsize] * n  # Inicializa las distancias con un valor muy grande (infinito).
-    previous = [None] * n  # Almacena el predecesor de cada nodo en el camino más corto.
+    n = len(graph)
+    visited = [False]*n
+    distance = [sys.maxsize]*n
+    previous = [None]*n
 
-    distance[start] = 0  # La distancia desde el nodo inicial a sí mismo es 0.
+    distance[start] = 0
 
-    # Itera n veces para visitar todos los nodos.
     for _ in range(n):
-        # Inicializa la distancia mínima y el índice del nodo con la distancia mínima.
+        # Encontrar el nodo no visitado con la distancia más pequeña
         min_distance = sys.maxsize
         min_index = -1
-
-        # Busca el nodo no visitado con la distancia mínima.
         for i in range(n):
             if not visited[i] and distance[i] < min_distance:
-                min_distance = distance[i]  # Actualiza la distancia mínima.
-                min_index = i  # Actualiza el índice del nodo con la distancia mínima.
+                min_distance = distance[i]
+                min_index = i
 
-        # Si no se encuentra un nodo no visitado, se rompe el bucle (el grafo puede no ser completamente conectado).
         if min_index == -1:
             break
 
